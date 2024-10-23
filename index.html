@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Form</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "GmY6k7V5fdlxXe1n_",
+      });
+   })();
+</script>
+<script src="script.js"></script>
 </head>
 <body>
     <h2>Contact Form</h2>
-    <form action="send_email.php" method="post">
+    <form id="contact-form">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name" required><br><br>
 
@@ -16,5 +27,29 @@
 
         <input type="submit" value="Submit">
     </form>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            // Collect form data
+            var name = document.getElementById('name').value;
+            var phone = document.getElementById('phone').value;
+
+            // Prepare the email data
+            var emailParams = {
+                from_name: name,
+                phone_number: phone
+            };
+
+            // Send the email using EmailJS
+            emailjs.send('service_jqfxnxy', 'template_vvlhgn5', emailParams)
+                .then(function(response) {
+                    alert('Form submitted successfully!'); // Success message
+                }, function(error) {
+                    alert('Error sending email: ' + JSON.stringify(error)); // Error message
+                });
+        });
+    </script>
 </body>
 </html>
